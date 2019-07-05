@@ -43,6 +43,13 @@ const server = http.createServer((req, res) => {
       }
     );
   }
+  //IMG
+  else if((/\.(jpg|jpeg|png|gif)$/i).test(pathName)){
+    fs.readFile(`${__dirname}/data/img${pathName}`, (error, data) =>{
+        res.writeHead(200, { "Content-Type": "image/jpg" });
+        res.end(data);
+    })
+  }
   // Not found
   else {
     res.writeHead(404, { "Content-Type": "text/html" });
